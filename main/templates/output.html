@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main class="container">
+        <div class="d-flex align-items-center p-3 my-3 text-white bg-light rounded shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" style="color: #fff !important;" class="m-1 text-light" width="32" height="48" viewBox="0 0 512 512"><path d="M24 32C37.25 32 48 42.75 48 56V408C48 421.3 58.75 432 72 432H488C501.3 432 512 442.7 512 456C512 469.3 501.3 480 488 480H72C32.24 480 0 447.8 0 408V56C0 42.75 10.75 32 24 32zM128 136C128 122.7 138.7 112 152 112H360C373.3 112 384 122.7 384 136C384 149.3 373.3 160 360 160H152C138.7 160 128 149.3 128 136zM296 208C309.3 208 320 218.7 320 232C320 245.3 309.3 256 296 256H152C138.7 256 128 245.3 128 232C128 218.7 138.7 208 152 208H296zM424 304C437.3 304 448 314.7 448 328C448 341.3 437.3 352 424 352H152C138.7 352 128 341.3 128 328C128 314.7 138.7 304 152 304H424z"/></svg>
+            <div class="lh-1 m-1">
+                <h1 class="h6 mb-0 text-dark lh-1">Variograms For 'Stone'</h1>
+                <small class="text-muted">Result Output</small>
+            </div>
+            <img src="{% static 'schoolLogo2.jpg' %}" class="headerImage" width="15%" alt="" srcset="">
+          </div>
+    </main>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="outputHeading">Your panel has created two Semi Variogram for 'Stone'</h1>
+                <br>
+                <br>
+                <!--button to expot file as JPG for now an onClick event is set to it, it just print the current page-->
+                <button class="btn btn-dark btn-block btn-lg" onclick="print()" style="width:60%;">Export as JPG <img src="{% static '1-share-outline.png' %}" width="30px" alt=""></button>
+            </div>
+            <div class="col-md-6">
+                <h4>Panel</h4>
+                <img src="{% static 'logo.jpg' %}" width="100%" alt="" srcset="">
+            </div>
+        </div>
+
+        <br>
+        
+        <h4>Results table</h4>
+        <!--Table result for the variogram, contains dummy data-->
+        <div class="my-3 p-3 bg-body rounded shadow-sm table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    {% for coll in cols %}
+                        <th scope="col">coll</th>
+                    {% endfor %}
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Stone</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Gravel</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Sand</th>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+
+        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Stone</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Sand</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Gravel</button>
+            </li>
+          </ul>
+          <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="my-3 p-3 bg-body rounded shadow-sm">
+                            <!--Row For Stone Vertical And Horizontal Line Chart-->
+                            <h4>Stone Vertical</h4>
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="my-3 p-3 bg-body rounded shadow-sm">
+                            <h4>Stone Horizontal</h4>
+                            <canvas id="myChart2" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                <!--Row For Sand Vertical And Horizontal Line Chart-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="my-3 p-3 bg-body rounded shadow-sm">
+                            <h4>Sand Vertical</h4>
+                            <canvas id="myChart3" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="my-3 p-3 bg-body rounded shadow-sm">
+                            <h4>Sand Horizontal</h4>
+                            <canvas id="myChart4" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                <!--Row For Gravel Vertical And Horizontal Line Chart-->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="my-3 p-3 bg-body rounded shadow-sm">
+                            <h4>Gravel Vertical</h4>
+                            <canvas id="myChart5" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="my-3 p-3 bg-body rounded shadow-sm">
+                            <h4>Gravel Horizontal</h4>
+                            <canvas id="myChart6" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+
+        <br>
+        <br>
+
+    </div>
+{% endblock %}

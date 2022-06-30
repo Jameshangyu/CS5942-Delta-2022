@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main class="container">
+        <div class="d-flex align-items-center p-3 my-3 text-white bg-light rounded shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" style="color: #fff !important;" class="m-1 text-light" width="32" height="48" viewBox="0 0 512 512"><path d="M24 32C37.25 32 48 42.75 48 56V408C48 421.3 58.75 432 72 432H488C501.3 432 512 442.7 512 456C512 469.3 501.3 480 488 480H72C32.24 480 0 447.8 0 408V56C0 42.75 10.75 32 24 32zM128 136C128 122.7 138.7 112 152 112H360C373.3 112 384 122.7 384 136C384 149.3 373.3 160 360 160H152C138.7 160 128 149.3 128 136zM296 208C309.3 208 320 218.7 320 232C320 245.3 309.3 256 296 256H152C138.7 256 128 245.3 128 232C128 218.7 138.7 208 152 208H296zM424 304C437.3 304 448 314.7 448 328C448 341.3 437.3 352 424 352H152C138.7 352 128 341.3 128 328C128 314.7 138.7 304 152 304H424z"/></svg>
+          <div class="lh-1 m-1">
+            <h1 class="h6 mb-0 text-dark lh-1">Form Upload</h1>
+            <small class="text-muted">Find variogram</small>
+          </div>
+            <img src="{% static 'schoolLogo2.jpg' %}" class="headerImage" width="15%" alt="" srcset="">
+        </div>
+
+        <div class="row"><!--A bootstap row created to contain two columns on the right is the variogram forms upload and the left is adescription and guide section for how the app works-->
+          <div class="col-md-6"><!--Initial column of row-->
+            <div class="">
+              <div class="my-3 p-3 bg-body rounded shadow-sm">
+                <h6 class="border-bottom pb-2 mb-0">Scan A Panel Into A Variogram</h6>
+
+                  <form action="{% url 'home' %}" class="pt-3" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <div class="form-group mb-1">
+                        <label for="exampleFormControlInput1">Scale in Meters/ width(x)</label><!--A label for the form INput field-->
+                        <input type="number" name="width" class="form-control" id="exampleFormControlInput1" placeholder="eg 200" required><!--A number input field for the meter reading scale-->
+                      </div>
+
+                      <div class="form-group mb-1">
+                        <label for="exampleFormControlInput1">Scale in Meters/height(Y)</label><!--A label for the form INput field-->
+                        <input type="number" name="height" class="form-control" id="exampleFormControlInput1" placeholder="eg 350" required><!--A number input field for the meter reading scale-->
+                      </div>
+
+                      <label for="">Panel Image</label><!--Label for panel Image-->
+                      <input type="file" id="inputFile" name="imagePanel" class="form-control mb-3" placeholder="Upload image" required><!--An image upload/file upload input field-->
+
+                      <button class="btn btn-dark btn-block btn-lg" style="width: 100%;" type="submit">Submit</button><!--A form submit action button , it should redirect to colourAnalyzer.html page-->
+                  </form>
+              </div>
+          </div>
+
+          </div>
+            <div class="col-md-6"><!--second column of row-->
+              <div class="my-3 p-3 bg-body rounded shadow-sm infoSection">
+                <h6 class="border-bottom pb-2 mb-0">How It Works</h6>
+                <div class="d-flex text-muted pt-3"><!--d-flex bootstrap class aids in displaying element present in a row-->
+                 <img src="{% static '15-ratio-outline.png' %}" width="10%" height="10%" alt="" srcset="">
+                    <!--The first is an svg which has some specified size-->
+                  <p class="pb-3 mb-0 small lh-sm border-bottom"><!--The description section is located on the right side of the box icon-->
+                    <strong class="d-block text-gray-dark">Upload Image</strong>
+                    Some representative placeholder content, with some information about the image upload. Imagine this being some sort of status update, perhaps?
+                  </p>
+                </div>
+      
+                <div class="d-flex text-muted pt-3">
+                  <img src="{% static '17-assignment-outline.png' %}" width="10%" height="10%" alt="" srcset="">
+            
+                  <p class="pb-3 mb-0 small lh-sm border-bottom">
+                    <strong class="d-block text-gray-dark">Complete Forms</strong>
+                    Some representative placeholder content, with some information about the image upload. Imagine this being some sort of status update, perhaps?
+                  </p>
+                </div>
+      
+                <div class="d-flex text-muted pt-3">
+                  <img src="{% static '43-pie-chart-diagram-outline.png' %}" width="10%" height="10%" alt="" srcset="">
+            
+                  <p class="pb-3 mb-0 small lh-sm border-bottom">
+                    <strong class="d-block text-gray-dark">Output</strong>
+                    Some representative placeholder content, with some information about the how the output  is presented. Imagine this being some sort of status update, perhaps?
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            
+        </div>
+
+        <!--Modal code here-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 id="exampleModalLabel" class="modal-title">How It Works</h5>
+                <button type="button" data-bs-dismiss="modal" class="close btn btn-dark" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="d-flex text-muted"><!--d-flex bootstrap class aids in displaying element present in a row-->
+                  <img src="{% static '15-ratio-outline.png' %}" width="10%" height="10%" alt="" srcset="">
+                    <!--The first is an gif which has some specified size-->
+                  <p class="pb-3 mb-0 small lh-sm border-bottom"><!--The description section is located on the right side of the box icon-->
+                    <strong class="d-block text-gray-dark">Upload Image</strong>
+                    Some representative placeholder content, with some information about the image upload. Imagine this being some sort of status update, perhaps?
+                  </p>
+                </div>
+      
+                <div class="d-flex text-muted pt-3">
+                  <img src="{% static '17-assignment-outline.png' %}" width="10%" height="10%" alt="" srcset="">
+            
+                  <p class="pb-3 mb-0 small lh-sm border-bottom">
+                    <strong class="d-block text-gray-dark">Complete Forms</strong>
+                    Some representative placeholder content, with some information about the image upload. Imagine this being some sort of status update, perhaps?
+                  </p>
+                </div>
+      
+                <div class="d-flex text-muted pt-3">
+                  <img src="{% static '43-pie-chart-diagram-outline.png' %}" width="10%" height="10%" alt="" srcset="">
+            
+                  <p class="pb-3 mb-0 small lh-sm">
+                    <strong class="d-block text-gray-dark">Output</strong>
+                    Some representative placeholder content, with some information about the how the output  is presented. Imagine this being some sort of status update, perhaps?
+                  </p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="floatingBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">Help <img src="{% static '140-help-center-outline.png' %}" width="30px" alt=""></button>
+    </main>
+{% endblock %}

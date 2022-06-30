@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main class="container">
+        <div class="d-flex align-items-center p-3 my-3 text-white bg-light rounded shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" style="color: #fff !important;" class="m-1 text-light" width="32" height="48" viewBox="0 0 512 512"><path d="M24 32C37.25 32 48 42.75 48 56V408C48 421.3 58.75 432 72 432H488C501.3 432 512 442.7 512 456C512 469.3 501.3 480 488 480H72C32.24 480 0 447.8 0 408V56C0 42.75 10.75 32 24 32zM128 136C128 122.7 138.7 112 152 112H360C373.3 112 384 122.7 384 136C384 149.3 373.3 160 360 160H152C138.7 160 128 149.3 128 136zM296 208C309.3 208 320 218.7 320 232C320 245.3 309.3 256 296 256H152C138.7 256 128 245.3 128 232C128 218.7 138.7 208 152 208H296zM424 304C437.3 304 448 314.7 448 328C448 341.3 437.3 352 424 352H152C138.7 352 128 341.3 128 328C128 314.7 138.7 304 152 304H424z"/></svg>
+            <div class="lh-1 m-1">
+                <h1 class="h6 mb-0 text-dark lh-1">Colours Analyzed</h1>
+                <small class="text-muted">Colours generated from panel</small>
+            </div>
+              <img src="{% static 'schoolLogo2.jpg' %}" class="headerImage" width="15%" alt="" srcset="">
+          </div>
+    </main>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="outputHeading">Your panel has generated '6' colours</h1>
+                <br>
+                <br>
+                <!--button to expot file as JPG for now an onClick event is set to it, it just print the current page-->
+                <button class="btn btn-dark btn-block btn-lg" onclick="history.back()" style="width:60%;">Go back </button>
+            </div>
+            <div class="col-md-6">
+                <h4>Panel</h4>
+                <img src="{% static 'logo.jpg' %}" width="100%" alt="" srcset="">
+            </div>
+        </div>
+
+        <br>
+        <h4>Colours Analyzed From Panel</h4>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="my-3 p-3 bg-body rounded shadow-sm">
+                    <canvas id="pieChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="my-3 p-3 bg-body rounded shadow-sm">
+                    <h6 class="border-bottom pb-2 mb-0">Select colours to analyze</h6>
+                    <form action="{% url 'color' %}" class="pt-3" method="POST">
+                        {% csrf_token %}
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="colour1" checked>
+                            <label class="form-check-label" for="colour1">
+                              <span style="background-color: #f1c40f;" class="p-2 mb-2">Colour 1</span>
+                            </label>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="Colour2">
+                            <label class="form-check-label" for="Colour2">
+                              <span style="background-color: #e74c3c;" class="p-2 mb-2">Colour 2</span>
+                            </label>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="Colour3">
+                            <label class="form-check-label" for="Colour3">
+                              <span style="background-color: #3498db;" class="p-2 mb-2">Colour 3</span>
+                            </label>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="Colour4">
+                            <label class="form-check-label" for="Colour4">
+                              <span style="background-color: #9b59b6;" class="p-2 mb-2">Colour 4</span>
+                            </label>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="Colour5">
+                            <label class="form-check-label" for="Colour5">
+                              <span style="background-color: #2ecc71;" class="p-2 mb-2">Colour 5</span>
+                            </label>
+                        </div>
+                        <br>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="flexRadioDefault" id="Colour6">
+                            <label class="form-check-label" for="Colour6">
+                              <span style="background-color: #34495e;" class="p-2 mb-2">Colour 6</span>
+                            </label>
+                        </div>
+                        <br>
+                        <button class="btn btn-dark btn-block" type="submit" style="width:60%;">Analyze Colours</button><!--Should link to the output page-->
+                    </form>
+                </div>
+            </div>
+          </div>
+        <br>
+        <br>
+
+    </div>
+
+{% endblock %}

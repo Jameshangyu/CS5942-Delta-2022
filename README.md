@@ -20,7 +20,7 @@ List the libraries needed to build your application
 ## Building the application
  What steps are there to build this application?
 
-## Testing the build
+## Testing the buildss
 How do I test the code to ensure the build is correct?
 
 First make sure you are in the correct directory
